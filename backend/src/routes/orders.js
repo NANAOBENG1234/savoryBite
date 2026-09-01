@@ -1,0 +1,2 @@
+const express = require("express"); const router = express.Router(); const c = require("../controllers/orderController"); const {authenticate}=require("../middleware/auth");
+router.post("/",authenticate,c.createOrder); router.get("/",authenticate,c.getOrders); router.get("/mine",authenticate,(req,res)=>c.getUserOrders({params:{userId:req.userId}},res)); router.get("/:id",authenticate,c.getOrderById); router.patch("/:id/status",authenticate,c.updateOrderStatus); module.exports = router;
