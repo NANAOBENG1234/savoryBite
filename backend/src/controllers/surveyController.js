@@ -1,0 +1,5 @@
+const db = require("../../config/db");
+exports.createSurvey = (req,res)=>{const{title,questions}=req.body;if(!title||!questions)return res.status(400).json({error:"Title and questions required"});db.query("INSERT INTO surveys(title,questions)VALUES($1,$2)RETURNING *",[title,JSON.stringify(questions)],(err,r)=>{if(err)return res.status(500).json({error:err.message});res.status(201).json(r.rows[0])})};
+exports.getSurveys = (req,res)=>{db.query("SELECT * FROM surveys ORDER BY created_at DESC",(err,r)=>{if(err)return res.status(500).json({error:err.message});res.json(r.rows)})};
+exports.getSurveyById = (req,res)=>{db.query("SELECT * FROM surveys WHERE id=$1",[req.params.id],(err,r)=>{if(err)return res.status(500).json({error:err.message});if(r.rows.length===0)return res.status(404).json({error:"Not found"});res.json(r.rows[0])})};
+exports.submitResponse = (req,res)=>{const{surveyId,answers}=req.body;db.query("INSERT INTO survey_responses(survey_id,user_id,answers)VALUES($1,$2,$3)RETURNING *",[surveyId,req.userId,JSON.stringify(answers)],(err,r)=>{if(err)return res.status(500).json({error:err.message});res.status(201).json(r.rows[0])})};
