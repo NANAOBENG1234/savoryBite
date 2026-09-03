@@ -2,23 +2,28 @@ import React, { useState } from "react";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import FeaturedFoods from "../../sections/FeaturedFoods/FeaturedFoods";
 import Categories from "../../sections/Categories/Categories";
+import HowItWorks from "../../sections/HowItWorks/HowItWorks";
 import Testimonials from "../../sections/Testimonials/Testimonials";
 import DeliveryInfo from "../../sections/DeliveryInfo/DeliveryInfo";
 import Promotions from "../../sections/Promotions/Promotions";
+import StickyOrderBar from "../../components/StickyOrderBar/StickyOrderBar";
 import Modal from "../../components/Modal/Modal";
 import { useCart } from "../../hooks/useCart";
 import { formatPrice } from "../../utils/formatPrice";
 import { HiStar, HiShoppingCart } from "react-icons/hi";
+
 function Home() {
   const [quickViewFood, setQuickViewFood] = useState(null);
   const { addItem } = useCart();
   return (<>
-    <HeroSection title="Where Tradition Meets Luxury" subtitle="Experience the finest African cuisine, crafted with passion and served with elegance. Every dish tells a story." ctaText="Explore Menu" ctaLink="/menu" backgroundImage="https://images.unsplash.com/photo-1540100716001-4b432820e37f?w=1200&q=80&auto=format&fit=crop" badge="Premium African Dining" />
+    <HeroSection title="Where Tradition Meets Luxury" subtitle="Experience the finest African cuisine, crafted with passion and served with elegance. Every dish tells a story." ctaText="Order Now" ctaLink="/menu" backgroundImage="https://images.unsplash.com/photo-1540100716001-4b432820e37f?w=1600&q=80&auto=format&fit=crop" badge="Premium African Dining" />
     <Categories />
     <FeaturedFoods onQuickView={setQuickViewFood} />
     <Promotions />
+    <HowItWorks />
     <Testimonials />
     <DeliveryInfo />
+    <StickyOrderBar />
     <Modal isOpen={!!quickViewFood} onClose={() => setQuickViewFood(null)}>
       {quickViewFood && (<div>
         <img src={quickViewFood.image} alt={quickViewFood.name} style={{width:"100%",height:"300px",objectFit:"cover",borderRadius:"var(--radius-md)",marginBottom:"1.5rem"}} />
