@@ -13,7 +13,7 @@ function Home() {
   const [quickViewFood, setQuickViewFood] = useState(null);
   const { addItem } = useCart();
   return (<>
-    <HeroSection title="Where Tradition Meets Luxury" subtitle="Experience the finest African cuisine, crafted with passion and served with elegance. Every dish tells a story." ctaText="Explore Menu" ctaLink="/menu" backgroundImage="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1600" badge="Premium African Dining" />
+    <HeroSection title="Where Tradition Meets Luxury" subtitle="Experience the finest African cuisine, crafted with passion and served with elegance. Every dish tells a story." ctaText="Explore Menu" ctaLink="/menu" backgroundImage="https://images.unsplash.com/photo-1540100716001-4b432820e37f?w=1200&q=80&auto=format&fit=crop" badge="Premium African Dining" />
     <Categories />
     <FeaturedFoods onQuickView={setQuickViewFood} />
     <Promotions />
