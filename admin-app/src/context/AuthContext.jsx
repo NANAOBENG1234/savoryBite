@@ -13,8 +13,15 @@ export function AuthProvider({ children }) {
 
   async function login(credentials) {
     const data = await api.post("/auth/login", credentials);
+    const u = data.user || {};
+    if (u.role !== "admin") {
+      clearSession();
+      const err = new Error("Access denied: admin credentials required");
+      err.status = 403;
+      throw err;
+    }
     setSession(data);
-    return data.user;
+    return u;
   }
 
   function logout() {
@@ -22,7 +29,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthed: !!user, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthed: !!user, isAdmin: !!(user && user.role === "admin"), login, logout }}>
       {children}
     </AuthContext.Provider>
   );
