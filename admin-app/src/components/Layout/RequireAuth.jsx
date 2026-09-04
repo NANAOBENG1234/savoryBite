@@ -4,10 +4,10 @@ import { useAuth } from "../../context/AuthContext";
 import Layout from "./Layout";
 
 function RequireAuth() {
-  const { isAuthed } = useAuth();
+  const { isAdmin, isAuthed } = useAuth();
   const location = useLocation();
 
-  if (!isAuthed) {
+  if (!isAuthed || !isAdmin) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

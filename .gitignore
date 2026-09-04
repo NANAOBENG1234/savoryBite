@@ -12,6 +12,7 @@ build/
 
 # Logs
 *.log
+*.err
 npm-debug.log*
 
 # Editor/OS
