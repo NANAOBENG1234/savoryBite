@@ -132,6 +132,14 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; lin
 .field input, .field textarea, .field select { width: 100%; padding: 0.75rem 1rem; background: var(--white); border: 1px solid rgba(26,37,68,0.12); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.95rem; transition: all 0.25s ease; }
 .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--terracotta-400); box-shadow: 0 0 0 3px rgba(232,105,58,0.12); }
 .field textarea { resize: vertical; min-height: 90px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(15,21,38,0.55); backdrop-filter: blur(3px); display: flex; align-items: flex-start; justify-content: center; padding: 4rem 1rem; z-index: 1000; overflow-y: auto; }
+.modal { background: var(--white); border-radius: var(--radius-lg); width: 100%; max-width: 520px; box-shadow: 0 30px 80px rgba(15,21,38,0.35); }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(26,37,68,0.08); }
+.modal-header h3 { margin: 0; }
+.modal-body { padding: 1.5rem; }
+.modal-footer { padding: 1rem 1.5rem; border-top: 1px solid rgba(26,37,68,0.08); display: flex; justify-content: flex-end; gap: 0.75rem; }
 
 .empty-state { text-align: center; padding: 3.5rem 1.5rem; color: var(--text-muted); }
 .empty-state-icon { font-size: 2.6rem; margin-bottom: 0.75rem; opacity: 0.5; }
