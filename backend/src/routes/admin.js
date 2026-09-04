@@ -8,5 +8,6 @@ router.get("/recent-orders", authenticate, adminOnly, c.getRecentOrders);
 router.get("/categories", authenticate, adminOnly, c.getCategories);
 router.get("/kitchen-orders", authenticate, adminOnly, c.getKitchenOrders);
 router.patch("/advance-order/:id", authenticate, adminOnly, c.advanceOrder);
+router.get("/customers", authenticate, adminOnly, c.getCustomers);
 
 module.exports = router;
