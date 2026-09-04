@@ -67,6 +67,26 @@ exports.advanceOrder = (req, res) => {
   );
 };
 
+exports.getAnalytics = (req, res) => {
+  const topFoodsQuery =
+    "WITH expanded AS (SELECT jsonb_array_elements(items::jsonb) AS item FROM orders WHERE status <> 'cancelled') SELECT item->>'name' AS name, SUM((item->>'quantity')::int) AS quantity, SUM(((item->>'price')::numeric) * (item->>'quantity')::int) AS revenue FROM expanded WHERE item->>'name' IS NOT NULL GROUP BY item->>'name' ORDER BY quantity DESC LIMIT 10";
+
+  db.query(topFoodsQuery)
+    .then((topFoods) => {
+      return Promise.all([
+        db.query("SELECT TO_CHAR(created_at,'YYYY-MM-DD') AS day, SUM(total) AS revenue, COUNT(*) AS orders FROM orders WHERE status <> 'cancelled' GROUP BY day ORDER BY day ASC"),
+        db.query("SELECT status, COUNT(*) AS count FROM orders GROUP BY status"),
+      ]).then(([byDay, status]) => {
+        res.json({
+          dailyRevenue: byDay.rows.map((r) => ({ day: r.day, revenue: Number(r.revenue), orders: Number(r.orders) })),
+          statusBreakdown: status.rows.map((r) => ({ status: r.status, count: Number(r.count) })),
+          topFoods: topFoods.rows.map((r) => ({ name: r.name, quantity: Number(r.quantity), revenue: Number(r.revenue) })),
+        });
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err.message }));
+};
+
 exports.getCustomers = (req, res) => {
   db.query(
     "SELECT u.id,u.name,u.email,u.role,u.created_at,COUNT(o.id) AS total_orders,COALESCE(SUM(o.total),0) AS total_spend FROM users u LEFT JOIN orders o ON o.user_id=u.id GROUP BY u.id ORDER BY u.created_at DESC",

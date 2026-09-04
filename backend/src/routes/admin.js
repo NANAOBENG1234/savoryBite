@@ -9,5 +9,6 @@ router.get("/categories", authenticate, adminOnly, c.getCategories);
 router.get("/kitchen-orders", authenticate, adminOnly, c.getKitchenOrders);
 router.patch("/advance-order/:id", authenticate, adminOnly, c.advanceOrder);
 router.get("/customers", authenticate, adminOnly, c.getCustomers);
+router.get("/analytics", authenticate, adminOnly, c.getAnalytics);
 
 module.exports = router;
