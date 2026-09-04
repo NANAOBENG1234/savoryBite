@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
       throw err;
     }
     setSession(data);
+    setUser(u);
     return u;
   }
 
