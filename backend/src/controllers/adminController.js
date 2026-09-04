@@ -66,3 +66,17 @@ exports.advanceOrder = (req, res) => {
     }
   );
 };
+
+exports.getCustomers = (req, res) => {
+  db.query(
+    "SELECT u.id,u.name,u.email,u.role,u.created_at,COUNT(o.id) AS total_orders,COALESCE(SUM(o.total),0) AS total_spend FROM users u LEFT JOIN orders o ON o.user_id=u.id GROUP BY u.id ORDER BY u.created_at DESC",
+    (err, r) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(r.rows.map((u) => ({
+        ...u,
+        total_orders: Number(u.total_orders),
+        total_spend: Number(u.total_spend),
+      })));
+    }
+  );
+};
