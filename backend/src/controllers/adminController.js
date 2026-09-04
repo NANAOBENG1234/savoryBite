@@ -29,3 +29,13 @@ exports.getRecentOrders = (req, res) => {
     }
   );
 };
+
+exports.getCategories = (req, res) => {
+  db.query(
+    "SELECT DISTINCT category FROM foods WHERE category IS NOT NULL AND category <> '' ORDER BY category",
+    (err, r) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(r.rows.map((row) => row.category));
+    }
+  );
+};
