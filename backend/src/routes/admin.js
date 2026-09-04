@@ -6,5 +6,7 @@ const { authenticate, adminOnly } = require("../middleware/auth");
 router.get("/stats", authenticate, adminOnly, c.getStats);
 router.get("/recent-orders", authenticate, adminOnly, c.getRecentOrders);
 router.get("/categories", authenticate, adminOnly, c.getCategories);
+router.get("/kitchen-orders", authenticate, adminOnly, c.getKitchenOrders);
+router.patch("/advance-order/:id", authenticate, adminOnly, c.advanceOrder);
 
 module.exports = router;
