@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   HiOutlineHome, HiOutlineShoppingBag, HiOutlineClipboardList,
-  HiOutlineViewGrid, HiOutlineUserGroup, HiOutlineChartBar, HiOutlineCog,
+  HiOutlineViewGrid, HiOutlineUserGroup, HiOutlineUserAdd, HiOutlineChartBar, HiOutlineCog,
 } from "react-icons/hi";
 
 function Sidebar() {
@@ -14,6 +14,7 @@ function Sidebar() {
     { to: "/menu", label: "Menu", icon: <HiOutlineClipboardList /> },
     { to: "/kitchen", label: "Kitchen", icon: <HiOutlineViewGrid /> },
     { to: "/customers", label: "Customers", icon: <HiOutlineUserGroup /> },
+    { to: "/staff", label: "Staff", icon: <HiOutlineUserAdd /> },
     { to: "/analytics", label: "Analytics", icon: <HiOutlineChartBar /> },
     { to: "/settings", label: "Settings", icon: <HiOutlineCog /> },
   ];
