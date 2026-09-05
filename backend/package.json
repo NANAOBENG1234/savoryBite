@@ -6,7 +6,8 @@
     "dev": "nodemon src/app.js",
     "start": "node src/app.js",
     "seed": "node database/seed.js",
-    "seed:admin": "node database/seed-admin.js"
+    "seed:admin": "node database/seed-admin.js",
+    "migrate": "node database/migrate.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
