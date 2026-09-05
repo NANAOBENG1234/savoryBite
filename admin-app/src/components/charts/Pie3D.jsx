@@ -46,7 +46,10 @@ function Pie3D({ data = [], formatValue = (v) => String(v) }) {
     cursor -= sweep;
   });
 
-  const hasFront = (s) => sampleRaw(s.start, s.end, STEP).some((a) => CY - RY * Math.sin((a * Math.PI) / 180) >= CY);
+  const hasFront = (s) => {
+    const m = normZero(s.mid);
+    return m > 180 && m <= 360;
+  };
   slices.forEach((s) => {
     s.front = hasFront(s);
   });
@@ -63,11 +66,11 @@ function Pie3D({ data = [], formatValue = (v) => String(v) }) {
       const p = { ...ellipsePoint(CX, CY, RX, RY, a), a };
       if (p.y >= CY) run.push(p);
       else if (run.length) {
-        bands.push(run);
+        bands.push(run.slice());
         run.length = 0;
       }
     }
-    if (run.length) bands.push(run);
+    if (run.length) bands.push(run.slice());
     return bands
       .map((band) => {
         const top = band.map((p) => ({ x: p.x, y: p.y }));
