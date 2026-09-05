@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { useApi } from "../../hooks/useApi";
 import { formatPrice } from "../../utils/formatPrice";
-
-function UserAvatar({ name }) {
-  const initial = (name || "?").charAt(0).toUpperCase();
-  return (
-    <span style={{
-      width: "38px", height: "38px", borderRadius: "50%", background: "linear-gradient(135deg,var(--terracotta-400),var(--terracotta-600))",
-      color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontWeight: 700,
-    }}>{initial}</span>
-  );
-}
+import UserAvatar from "../../components/UI/UserAvatar";
 
 function Customers() {
   const { data, loading } = useApi("/admin/customers");
