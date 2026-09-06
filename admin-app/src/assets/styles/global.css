@@ -176,6 +176,32 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; lin
 .text-right { text-align: right; }
 .nowrap { white-space: nowrap; }
 
+.chart-card { padding: 1.4rem 1.5rem 1.5rem; }
+.chart-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.1rem; }
+.chart-card-title { display: flex; align-items: center; gap: 0.8rem; }
+.chart-card-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: linear-gradient(135deg, rgba(232,105,58,0.14), rgba(232,105,58,0.2)); color: var(--terracotta-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.card-title { font-family: var(--font-accent); font-weight: 600; font-size: 1rem; color: var(--text-primary); margin: 0; }
+.card-subtitle { font-size: 0.8rem; color: var(--text-muted); margin: 0.1rem 0 0; }
+.chart-card-body { position: relative; }
+.chart-pie-flex { display: grid; grid-template-columns: 1fr auto; gap: 1.25rem; align-items: center; }
+.chart-3d { width: 100%; height: auto; display: block; overflow: visible; }
+.chart-3d .chart-axis-label { font-size: 12px; font-family: var(--font-accent); }
+.chart-3d .chart-bar-label { font-size: 13px; font-family: var(--font-accent); }
+.chart-3d .chart-value-label { font-size: 13px; font-family: var(--font-accent); font-weight: 600; }
+.chart-3d .chart-slice-label { font-size: 11px; font-family: var(--font-accent); font-weight: 700; pointer-events: none; }
+.chart-legend { display: flex; flex-direction: column; gap: 0.45rem; min-width: 190px; }
+.chart-legend-item { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-accent); font-size: 0.82rem; color: var(--text-secondary); }
+.chart-legend-swatch { width: 13px; height: 13px; border-radius: 4px; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(26,37,68,0.1); }
+.chart-legend-name { flex: 1; }
+.chart-legend-value { font-weight: 600; color: var(--indigo-700); white-space: nowrap; }
+.chart-legend-pct { color: var(--text-muted); width: 40px; text-align: right; }
+.chart-empty { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-family: var(--font-accent); }
+.chart-bar3d { animation: chart-rise 0.55s cubic-bezier(0.22, 0.68, 0.35, 1.15) both; transform-origin: 50% 100%; }
+@keyframes chart-rise {
+  from { opacity: 0; transform: scaleY(0.4); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
 @media (max-width: 1024px) {
   .admin-sidebar { transform: translateX(-100%); }
   .admin-sidebar.open { transform: translateX(0); }
